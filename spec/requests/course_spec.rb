@@ -8,12 +8,12 @@ RSpec.describe Course, type: :request do
   describe 'create' do
     context 'when course name is not present' do
       it 'responds with appropriate error message' do
-        post '/courses', params: { course_name: '' }
+        post '/courses', params: { name: '' }
         response_body = JSON.parse(response.body)
         expect(response_body).to eq(
           {
             'message' => 'Failed to create course',
-            'error_message' => "Course name can't be blank"
+            'error_message' => "Name can't be blank"
           }
         )
       end
@@ -21,7 +21,7 @@ RSpec.describe Course, type: :request do
 
     context 'when course is is present' do
       it 'responds with success message' do
-        post '/courses', params: { course_name: 'demo-course' }
+        post '/courses', params: { name: 'demo-course' }
         response_body = JSON.parse(response.body)
         course = Course.first
         expect(response_body).to eq(
@@ -48,10 +48,10 @@ RSpec.describe Course, type: :request do
              [
                {
                  'id' => tutor.course.id,
-                 'course_name' => 'test-course',
+                 'name' => 'test-course',
                  'tutors' => [{
                    'id' => tutor.id,
-                   'tutor_name' => 'test-tutor'
+                   'name' => 'test-tutor'
                  }]
                }
              ],

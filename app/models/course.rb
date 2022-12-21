@@ -2,5 +2,5 @@
 
 class Course < ApplicationRecord
   has_many :tutors, dependent: :destroy
-  validates :course_name, presence: true
+  validates :name, presence: true
 end

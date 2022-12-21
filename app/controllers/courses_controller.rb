@@ -38,7 +38,7 @@ class CoursesController < ApplicationController
   def permit_course_params
     case params[:action]
     when 'create'
-      params.permit(:course_name)
+      params.permit(:name)
     when 'list'
       params.permit(:page, :per_page)
     end

@@ -25,6 +25,6 @@ class TutorsController < ApplicationController
   end
 
   def permit_tutor_params
-    params.permit(:tutor_name, :course_id)
+    params.permit(:name, :course_id)
   end
 end

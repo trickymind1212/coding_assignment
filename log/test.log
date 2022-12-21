@@ -1,0 +1,666 @@
+  [1m[35m (114.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "coding-assignment_test"[0m
+  [1m[35m (258.6ms)[0m  [1m[35mCREATE DATABASE "coding-assignment_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses" CASCADE[0m
+  [1m[35m (15.3ms)[0m  [1m[35mCREATE TABLE "courses" ("id" bigserial primary key, "course_name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "tutors" CASCADE[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" bigserial primary key, "tutor_name" character varying NOT NULL, "course_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[35m (4.6ms)[0m  [1m[35mALTER TABLE "tutors" ADD CONSTRAINT "fk_rails_ecbf595870"
+FOREIGN KEY ("course_id")
+  REFERENCES "courses" ("id")
+[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20221221121936)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2022-12-21 13:35:00.714619"], ["updated_at", "2022-12-21 13:35:00.714619"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "c44b37283f25a7486b58d876462d10f093dc6517"], ["created_at", "2022-12-21 13:35:00.728418"], ["updated_at", "2022-12-21 13:35:00.728418"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:05:00 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 17ms (Views: 0.6ms | ActiveRecord: 2.9ms | Allocations: 7760)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:07:09 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 2.5ms | Allocations: 7738)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:07:09 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 13:37:09.538509"], ["updated_at", "2022-12-21 13:37:09.538509"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 1217)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:07:28 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7738)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:07:28 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 13:37:28.904512"], ["updated_at", "2022-12-21 13:37:28.904512"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 1217)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:07:56 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 2.5ms | Allocations: 7738)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:07:56 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 13:37:56.907449"], ["updated_at", "2022-12-21 13:37:56.907449"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:08:14 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7738)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:08:14 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 13:38:14.945383"], ["updated_at", "2022-12-21 13:38:14.945383"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:40:08.103235"], ["updated_at", "2022-12-21 13:40:08.103235"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:10:08 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"5"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 20ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 11393)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:11:16 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 2752)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:11:41 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 2752)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:43:11.057061"], ["updated_at", "2022-12-21 13:43:11.057061"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:13:11 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"6"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 200 OK in 20ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 11396)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:13:11 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 321)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:43:11.114365"], ["updated_at", "2022-12-21 13:43:11.114365"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:13:11 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"demo-tutor", "course_id"=>"7"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.5ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "demo-tutor"], ["course_id", 7], ["created_at", "2022-12-21 13:43:11.117499"], ["updated_at", "2022-12-21 13:43:11.117499"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 1071)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:43:45.916717"], ["updated_at", "2022-12-21 13:43:45.916717"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:13:45 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"8"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+Completed 200 OK in 20ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 11396)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:13:45 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 321)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:43:45.974432"], ["updated_at", "2022-12-21 13:43:45.974432"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:13:45 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"demo-tutor", "course_id"=>"9"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "demo-tutor"], ["course_id", 9], ["created_at", "2022-12-21 13:43:45.977781"], ["updated_at", "2022-12-21 13:43:45.977781"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 1071)
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:44:07.511236"], ["updated_at", "2022-12-21 13:44:07.511236"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:14:07 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 11396)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:14:07 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 321)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 13:44:07.567560"], ["updated_at", "2022-12-21 13:44:07.567560"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:14:07 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"demo-tutor", "course_id"=>"11"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.3ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "demo-tutor"], ["course_id", 11], ["created_at", "2022-12-21 13:44:07.570208"], ["updated_at", "2022-12-21 13:44:07.570208"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1071)
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:33:24 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:33:24 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:03:24.942497"], ["updated_at", "2022-12-21 14:03:24.942497"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:33:47 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:33:48 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:03:48.001695"], ["updated_at", "2022-12-21 14:03:48.001695"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:34:03 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 7742)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:34:03 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:04:03.830889"], ["updated_at", "2022-12-21 14:04:03.830889"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:34:15 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 2.6ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:34:15 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:04:15.714927"], ["updated_at", "2022-12-21 14:04:15.714927"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:34:15 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1259)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:34:49 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:34:50 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:04:50.001068"], ["updated_at", "2022-12-21 14:04:50.001068"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:34:50 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mCACHE Course Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mCACHE Course Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+Completed 200 OK in 7830ms (Views: 0.6ms | ActiveRecord: 0.9ms | Allocations: 66553)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:35:19 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 2.4ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:35:19 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:05:19.943553"], ["updated_at", "2022-12-21 14:05:19.943553"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 1217)
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:05:19.953468"], ["updated_at", "2022-12-21 14:05:19.953468"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.3ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 18], ["created_at", "2022-12-21 14:05:19.957685"], ["updated_at", "2022-12-21 14:05:19.957685"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:35:19 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mCACHE Course Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 18]]
+Completed 200 OK in 4789ms (Views: 0.4ms | ActiveRecord: 1.2ms | Allocations: 69429)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:37:24 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:37:24 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:07:24.598494"], ["updated_at", "2022-12-21 14:07:24.598494"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:07:24.608153"], ["updated_at", "2022-12-21 14:07:24.608153"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.3ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 20], ["created_at", "2022-12-21 14:07:24.612438"], ["updated_at", "2022-12-21 14:07:24.612438"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:37:24 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.6ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 20]]
+Completed 200 OK in 2664ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 65497)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:38:04 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:38:04 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:08:04.262970"], ["updated_at", "2022-12-21 14:08:04.262970"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:08:04.272885"], ["updated_at", "2022-12-21 14:08:04.272885"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 22], ["created_at", "2022-12-21 14:08:04.277040"], ["updated_at", "2022-12-21 14:08:04.277040"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:38:04 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 22]]
+Completed 200 OK in 724ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 65497)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:39:12 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:39:12 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:09:12.089914"], ["updated_at", "2022-12-21 14:09:12.089914"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:09:12.100106"], ["updated_at", "2022-12-21 14:09:12.100106"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 24], ["created_at", "2022-12-21 14:09:12.104561"], ["updated_at", "2022-12-21 14:09:12.104561"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:39:12 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.6ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 24]]
+Completed 200 OK in 1282ms (Views: 0.4ms | ActiveRecord: 1.4ms | Allocations: 65497)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:40:37 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:40:37 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:10:37.849733"], ["updated_at", "2022-12-21 14:10:37.849733"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:10:37.859790"], ["updated_at", "2022-12-21 14:10:37.859790"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 26], ["created_at", "2022-12-21 14:10:37.864317"], ["updated_at", "2022-12-21 14:10:37.864317"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:40:37 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.5ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 26]]
+Completed 200 OK in 1518ms (Views: 0.3ms | ActiveRecord: 1.2ms | Allocations: 65476)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:41:00 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:41:00 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:11:00.940860"], ["updated_at", "2022-12-21 14:11:00.940860"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:11:00.950658"], ["updated_at", "2022-12-21 14:11:00.950658"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 28], ["created_at", "2022-12-21 14:11:00.954875"], ["updated_at", "2022-12-21 14:11:00.954875"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:41:00 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.6ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 28]]
+Completed 200 OK in 1581ms (Views: 0.4ms | ActiveRecord: 1.4ms | Allocations: 65476)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:42:19 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7737)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:42:19 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:12:19.388803"], ["updated_at", "2022-12-21 14:12:19.388803"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:12:19.398720"], ["updated_at", "2022-12-21 14:12:19.398720"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 30], ["created_at", "2022-12-21 14:12:19.403036"], ["updated_at", "2022-12-21 14:12:19.403036"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:42:19 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.3ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 30]]
+Completed 200 OK in 1151ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 65475)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:12:20.562135"], ["updated_at", "2022-12-21 14:12:20.562135"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:42:20 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"31"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 2484)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:42:20 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 321)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:12:20.578517"], ["updated_at", "2022-12-21 14:12:20.578517"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:42:20 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"demo-tutor", "course_id"=>"32"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.3ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "demo-tutor"], ["course_id", 32], ["created_at", "2022-12-21 14:12:20.581908"], ["updated_at", "2022-12-21 14:12:20.581908"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 975)
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:42:34 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>""}
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 7741)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/courses" for 127.0.0.1 at 2022-12-21 19:42:34 +0530
+Processing by CoursesController#create as HTML
+  Parameters: {"course_name"=>"demo-course"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "demo-course"], ["created_at", "2022-12-21 14:12:34.450955"], ["updated_at", "2022-12-21 14:12:34.450955"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1217)
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:12:34.461126"], ["updated_at", "2022-12-21 14:12:34.461126"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "test-tutor"], ["course_id", 34], ["created_at", "2022-12-21 14:12:34.465378"], ["updated_at", "2022-12-21 14:12:34.465378"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/courses/list" for 127.0.0.1 at 2022-12-21 19:42:34 +0530
+Processing by CoursesController#list as HTML
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.3ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = $1[0m  [["course_id", 34]]
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 4666)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:12:34.482158"], ["updated_at", "2022-12-21 14:12:34.482158"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:42:34 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"35"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 2483)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:42:34 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"", "course_id"=>"10"}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Filter chain halted as :find_course rendered or redirected
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 321)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["course_name", "test-course"], ["created_at", "2022-12-21 14:12:34.495464"], ["updated_at", "2022-12-21 14:12:34.495464"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/tutors" for 127.0.0.1 at 2022-12-21 19:42:34 +0530
+Processing by TutorsController#create as HTML
+  Parameters: {"tutor_name"=>"demo-tutor", "course_id"=>"36"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTutor Create (0.3ms)[0m  [1m[32mINSERT INTO "tutors" ("tutor_name", "course_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tutor_name", "demo-tutor"], ["course_id", 36], ["created_at", "2022-12-21 14:12:34.498887"], ["updated_at", "2022-12-21 14:12:34.498887"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 975)
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m

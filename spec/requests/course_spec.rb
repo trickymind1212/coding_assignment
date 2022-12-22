@@ -36,30 +36,59 @@ RSpec.describe Course, type: :request do
 
   describe 'list' do
     context 'when course are present' do
-      it 'responds with success message and course details' do
-        tutor
-        params = { page: 0, per_page: 1 }
-        get '/courses/list', params: params
-        response_body = JSON.parse(response.body)
-        expect(response_body).to eq(
-          {
-            'message' => 'Courses Successfully Retrieved',
-            'data' =>
-             [
-               {
-                 'id' => tutor.course.id,
-                 'name' => 'test-course',
-                 'tutors' => [{
-                   'id' => tutor.id,
-                   'name' => 'test-tutor'
-                 }]
-               }
-             ],
-             "page"=>0,
-             "per_page"=>1,
-             "total_courses"=>1
-          }
-        )
+      context 'when params are valid' do
+        it 'responds with success message and course details' do
+          tutor
+          params = { page: 0, per_page: 1 }
+          get '/courses/list', params: params
+          response_body = JSON.parse(response.body)
+          expect(response_body).to eq(
+            {
+              'message' => 'Courses Successfully Retrieved',
+              'data' =>
+              [
+                {
+                  'id' => tutor.course.id,
+                  'name' => 'test-course',
+                  'tutors' => [{
+                    'id' => tutor.id,
+                    'name' => 'test-tutor'
+                  }]
+                }
+              ],
+              'page' => 0,
+              'per_page' => 1,
+              'total_courses' => 1
+            }
+          )
+        end
+      end
+
+      context 'when params are invalid or not present' do
+        it 'responds with success message and course details (considering page 0 and per_page 1)' do
+          tutor
+          get '/courses/list'
+          response_body = JSON.parse(response.body)
+          expect(response_body).to eq(
+            {
+              'message' => 'Courses Successfully Retrieved',
+              'data' =>
+               [
+                 {
+                   'id' => tutor.course.id,
+                   'name' => 'test-course',
+                   'tutors' => [{
+                     'id' => tutor.id,
+                     'name' => 'test-tutor'
+                   }]
+                 }
+               ],
+              'page' => 0,
+              'per_page' => 1,
+              'total_courses' => 1
+            }
+          )
+        end
       end
     end
   end

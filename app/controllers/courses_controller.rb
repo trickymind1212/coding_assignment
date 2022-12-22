@@ -14,8 +14,8 @@ class CoursesController < ApplicationController
 
   def list
     permitted_params = permit_course_params
-    page = permitted_params[:page]&.to_i
-    per_page = permitted_params[:per_page]&.to_i
+    page = permitted_params[:page].to_i
+    per_page = permitted_params[:per_page].to_i.positive? ? permitted_params[:per_page].to_i : 1
     courses = []
     total_courses = Course.count
     Course.limit(per_page).offset(page).includes(:tutors).map do |course|
